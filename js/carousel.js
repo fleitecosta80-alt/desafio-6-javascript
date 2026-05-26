@@ -1,63 +1,37 @@
-
-
-
 let carouselArr = [];
 
-// class Carousel
 class Carousel {
+  // construtor
+  constructor(image, title, url) {
+    this.image = image;
+    this.title = title;
+    this.url = url;
+  }
 
-    // construtor
-    constructor(image, title, url){
+  static Start(arr) {
+    if (arr) {
+      if (arr.length > 0) {
+        Carousel._sequence = 0;
 
-        this.image = image;
-        this.title = title;
-        this.url = url;
+        Carousel._size = arr.length;
 
+        Carousel.Next();
+
+        Carousel._interval = setInterval(function () {
+          Carousel.Next();
+        }, 5000);
+      }
+    } else {
+      throw "Method Start need a Array Variable.";
     }
+  }
 
-    
-    static Start(arr){
+  static Next() {
+    let item = carouselArr[Carousel._sequence];
 
-        if(arr){
+    let carousel = document.getElementById("carousel");
 
-            if(arr.length > 0){
-
-                Carousel._sequence = 0;
-
-                Carousel._size = arr.length;
-
-                // inicia
-                Carousel.Next();
-
-                // intervalo 5 segundos
-                Carousel._interval = setInterval(function(){
-
-                    Carousel.Next();
-
-                }, 5000);
-
-            }
-
-        } else {
-
-            throw "Method Start need a Array Variable.";
-
-        }
-
-    }
-
-
-    static Next(){
-
-        // pega item atual
-        let item = carouselArr[Carousel._sequence];
-
-        // div imagem
-        let carousel =
-            document.getElementById("carousel");
-
-        // injeta imagem
-        carousel.innerHTML = `
+    carousel.innerHTML = `
         
             <img 
                 src="img/${item.image}" 
@@ -66,12 +40,9 @@ class Carousel {
         
         `;
 
-        // div título
-        let title =
-            document.getElementById("carousel-title");
+    let title = document.getElementById("carousel-title");
 
-        // injeta texto + link
-        title.innerHTML = `
+    title.innerHTML = `
         
             <a href="${item.url}">
                 ${item.title}
@@ -79,37 +50,24 @@ class Carousel {
         
         `;
 
-        // altera CSS via JS
-        title.style.textAlign = "center";
-        title.style.marginTop = "10px";
-        title.style.fontWeight = "bold";
+    title.style.textAlign = "center";
+    title.style.marginTop = "10px";
+    title.style.fontWeight = "bold";
 
-        // incrementa sequência
-        Carousel._sequence++;
+    Carousel._sequence++;
 
-        // condição retorno início
-        if(Carousel._sequence >= Carousel._size){
+    if (Carousel._sequence >= Carousel._size) {
+      Carousel._sequence = 0;
+    }
+  }
 
-            Carousel._sequence = 0;
+  static Prev() {
+    Carousel._sequence--;
 
-        }
-
+    if (Carousel._sequence < 0) {
+      Carousel._sequence = Carousel._size - 1;
     }
 
-    // botão próximo
-    static Prev(){
-
-        Carousel._sequence--;
-
-        if(Carousel._sequence < 0){
-
-            Carousel._sequence =
-                Carousel._size - 1;
-
-        }
-
-        Carousel.Next();
-
-    }
-
-};
+    Carousel.Next();
+  }
+}
