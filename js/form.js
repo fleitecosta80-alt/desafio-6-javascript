@@ -10,6 +10,16 @@ class Contato {
   }
 }
 
+window.onload = function () {
+  const termos = document.getElementById("termos");
+  const botao = document.querySelector(".botao-enviar");
+  
+  botao.disabled = true;
+
+  termos.addEventListener("change", function () {
+    botao.disabled = !this.checked;
+  });
+
 function Post(form) {
   let data = new Contato(
     form.elements.namedItem("nome").value,
@@ -27,6 +37,7 @@ function Post(form) {
     form.elements.namedItem("mensagem").value,
   );
 
+   console.log("Dados enviados:");
   console.log(data);
 
   alert(
@@ -35,5 +46,9 @@ function Post(form) {
       ", seus dados foram encaminhados com sucesso.",
   );
   form.reset();
+
+  document.querySelector(".botao-enviar").disabled = true;
+
   return false;
+}
 }

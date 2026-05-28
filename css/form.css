@@ -21,8 +21,7 @@
 }
 .forms textarea:focus-visible {
   outline: none;
-} 
-
+}
 
 select.fordform {
   width: 310px;
@@ -56,11 +55,26 @@ h2 {
   font-weight: 800;
 }
 
-button {
+.botao-enviar {
   width: 200px;
   height: 40px;
   margin-right: 8px;
   cursor: pointer;
+  color: #fff;
+  cursor: pointer;
+  background-color: #1351d8;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600 ;
+  transition: all 0.3s ease;
+}
+
+.botao-enviar:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.8;
 }
 
 .titulo {
@@ -75,6 +89,4 @@ img {
   border-radius: 10px;
 }
 
-button {
-  cursor: pointer;
-}
+
