@@ -8,6 +8,21 @@
   font-size: 13px;
   padding: 5px;
 }
+.forms textarea {
+  display: block;
+  width: 300px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  height: 100px;
+  margin: 8px;
+  font-size: 13px;
+  padding: 5px;
+  resize: none;
+}
+.forms textarea:focus-visible {
+  outline: none;
+} 
+
 
 select.fordform {
   width: 310px;
